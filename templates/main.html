@@ -24,11 +24,15 @@
 
 {% block yearButton %}
 <div class = "ui-grid-b ui-responsive">
-    <div class="ui-block-a"><a href="/2010" class="ui-btn ui-shadow ui-corner-all">2010</a></div>
-    <div class="ui-block-a"><a href="/2011" class="ui-btn ui-shadow ui-corner-all">2011</a></div>
-    <div class="ui-block-a"><a href="/2012" class="ui-btn ui-shadow ui-corner-all">2012</a></div>
-    <div class="ui-block-a"><a href="/2013" class="ui-btn ui-shadow ui-corner-all">2013</a></div>
-</div>
 
+    <form method="post">
+        <button class="ui-block-a"><a href="/years/{{ 2010 }}" class="ui-btn ui-shadow ui-corner-all">2010</a></button>
+        <button class="ui-block-a"><a href="/years/{{ 2011 }}" class="ui-btn ui-shadow ui-corner-all">2011</a></button>
+        <button class="ui-block-a"><a href="/years/{{ 2012 }}" class="ui-btn ui-shadow ui-corner-all">2012</a></button>
+        <button class="ui-block-a"><a href="/years/{{ 2013 }}" class="ui-btn ui-shadow ui-corner-all">2013</a></button>
+        <button class="ui-block-a"><a href="/years/{{ 2014 }}" class="ui-btn ui-shadow ui-corner-all">2014</a></button>
+        <button class="ui-block-a"><a href="/years/{{ 2015 }}" class="ui-btn ui-shadow ui-corner-all">2015</a></button>
+    </form>
+</div>
 {% endblock %}
 

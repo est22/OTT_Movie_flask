@@ -25,14 +25,14 @@ def main():
     return render_template("main.html")
 
 
-@api.route("years/<int:year_id>", methods=['GET', 'POST'])
+@api.route("years/<int:award_year>", methods=['GET', 'POST'])
 def movies(year_id):
     '''
     GET : 해당 year_id에 맞는 movies.html 보여주기
     POST : movie_id 넘겨주기
     '''
-    year_list = Movie.query.filter(Movie.award_year == year_id).all()
-    movie_id = year_list.id
+    year_movie_list = Movie.query.filter(Movie.award_year == award_year).all()
+
     if request.method == 'POST':
         movie_id = request.form['movie_id']
         # 영화 정보

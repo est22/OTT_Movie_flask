@@ -21,19 +21,17 @@ def register():
 
         # 이름 입력 안됨
         if not user_name:
-            # flash('이름을 입력해주세요.')
+            flash('이름을 입력해주세요.')
             return render_template('register.html')
-            # return jsonify({"result": "user name none"})
 
         # 비밀번호가 없음
         if not password or not password2:
-            # flash('비밀번호를 입력해주세요.')
-            # return render_template('register.html')
-            return jsonify({"result": "password null"})
+            flash('비밀번호를 입력해주세요.')
+            return render_template('register.html')
 
         # 비밀번호가 일치하지 않음
         if password != password2:
-            # flash('비밀번호가 일치하지 않습니다.')
+            flash('비밀번호가 일치하지 않습니다.')
             return render_template('register.html')
 
         # 비밀번호 암호화
@@ -43,20 +41,18 @@ def register():
         user_check = User.query.filter(
             User.user_name == user_name).first()
         if user_check:
-            # flash("이미 존재하는 닉네임입니다. 다른 이름을 입력해주세요.")
+            flash("이미 존재하는 닉네임입니다. 다른 이름을 입력해주세요.")
             return render_template('register.html')
-            # return jsonify(result='email_check')
 
         # db에 유저 생성
         user_data = User(user_name=user_name, password=pw_hash)
         db.session.add(user_data)
         db.session.commit()
 
-        # flash("회원가입이 완료되었습니다. 로그인해주세요!😊")
+        flash("회원가입이 완료되었습니다. 로그인해주세요!😊")
         return redirect("/login")
 
     # get방식인 경우
-    # return jsonify({"result": "user_none"})
     return render_template('register.html')
 
 
@@ -90,30 +86,29 @@ def login():
                 # 세션 생성
                 session.clear()
                 session['user_name'] = user_data.user_name
-                # flash("로그인 완료")
-                return jsonify({"result": "success 로그인 완료 메인 페이지 보여줌"})
+                flash("로그인 완료")
+                return redirect("/")
 
             # 비밀번호 일치하지 않음
             else:
-                # flash("비밀번호를 다시 확인해주세요.")
-                return jsonify({"result": "비번 없음"})
+                flash("비밀번호를 다시 확인해주세요.")
+                return render_template('login.html')
 
         # 사용자 없음
         else:
-            flash("해당 닉네임이 없습니다. 회원가입해주세요.")
-            # return redirect("/register")
-            return jsonify({"result": "user_none"})
+            flash("해당 이름이 없습니다. 회원가입해주세요.")
+            return redirect("/register")
 
     else:  # GET
         return render_template('login.html')
 
 
-@api.route('/logout', methods=["DELETE"])
+@api.route('/logout')
 def logout():
     '''
     로그아웃
     세션에서 사용자 정보 지워준다.
     '''
     session.clear()
-    # flash("로그아웃 되었습니다.")
+    flash("로그아웃 되었습니다.")
     return redirect("/")
