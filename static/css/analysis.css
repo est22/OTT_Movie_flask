@@ -1,0 +1,27 @@
+:root {
+    --gray-100-color: #f9fbff;
+    --gray-150-color: #f4f6fb;
+    --gray-300-color: #e1e5ee;
+    --gray-500-color: #4f546c;
+
+    --student-bg-color: #6d7fcc;
+    --student-font-color: #002b6c;
+    --worker-bg-color: #ffdbd1;
+    --worker-font-color: #bd7972;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+table {
+    background-color: white;
+    border-collapse: collapse;
+    box-shadow: 0px 5px 10px var(--gray-300-color);
+    text-align: left;
+    overflow: hidden;
+}
