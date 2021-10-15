@@ -11,8 +11,9 @@ def create_app():
     db.init_app(app)
 
     # 블루프린트
-    from views import auth, movie, user
+    from views import auth, main, movie, user
     app.register_blueprint(auth.api)
+    app.register_blueprint(main.api)
     app.register_blueprint(movie.api)
     app.register_blueprint(user.api)
 
@@ -21,8 +22,8 @@ def create_app():
     # 세션 사용을 위해서
     app.config['SESSION_TYPE'] = 'filesystem'
 
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
 
     return app
 

@@ -2,7 +2,7 @@ from flask import redirect, request, render_template, jsonify, Blueprint, sessio
 from models import *
 from datetime import datetime
 
-api = Blueprint('user', __name__, url_prefix='/user')
+api = Blueprint('user', __name__, url_prefix='/')
 
 
 @api.route('/favorites', methods=['GET'])

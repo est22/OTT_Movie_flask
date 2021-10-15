@@ -5,10 +5,6 @@ from datetime import datetime
 api = Blueprint('movie', __name__, url_prefix='/')
 
 
-@api.route('/')
-def main():
-
-
 @api.route('years/<int:year_id>/movies/<int:movie_id>', methods=['GET'])
 def movie():
     '''
