@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Detail page</h1>
+    <h2>Genre : {}</h2>
+    
+<!-- 영화 소개 -->
+    <container>
+        <button>❤️</button>
+        <p>나머지는 데이터베이스에 데이터 넣고 보여주기만 하는거니까 나중에 구현</p>
+    </container>
+
+<!-- 유저 리뷰 키워드 태그 -->
+    <container>
+        <h3>User Review Keyword</h3>
+        <p>#tag</p>
+        <p>#감동</p>
+    </container>
+
+<!-- review -->
+    <container>
+        <div class="row" style="margin:0 auto; padding-top:20px">
+            <h4>당신의 리뷰를 작성해주세요</h4>
+            <form method="post" class="" style="display:flex; margin-top:10px;">
+                <div style="display:flex;">
+                    <textarea name="review" placeholder="댓글을 작성하세요" rows="2" cols="95%"></textarea>
+                </div>
+                <div style="display:flex; margin-left:10px;">
+                    <select name="rating">
+                        <option value="1">1점</option>
+                        <option value="2">2점</option>
+                        <option value="3">3점</option>
+                        <option value="4">4점</option>
+                        <option value="5">5점</option>
+                    </select>
+                    <input type="submit" value="확인" style="margin-left:5px;">
+                </div>
+            </form>
+        </div>
+        <!-- 작성된 댓글 보여주기 -> 진자로? -->
+    </container>
+</body>
+</html>
