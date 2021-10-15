@@ -1,0 +1,15 @@
+year_list를 movies.html에 넘겨주면
+이게 리스트니까 for문 이용해서
+for year in year_list :
+    year.movie_name
+이 계속 나오도록 한다!
+
+그리고 form 태그로는 다음번 api에 전달해줄 때
+movie_id = year.id 로 전달해주도록!
+
+
+
+movie_detail.html에
+movie_detail
+review_detail
+like
