@@ -5,8 +5,8 @@ from datetime import datetime
 api = Blueprint('movie', __name__, url_prefix='/')
 
 
-@api.route('years/<int:year_id>/movies/<int:movie_id>', methods=['GET'])
-def movie():
+@api.route('movies/<int:movie_id>', methods=['GET',  'POST'])
+def movie_detail():
     '''
     parameter : year_id, movie_id
     GET : movie 테이블에 있는 데이터 가져오기
@@ -30,7 +30,7 @@ def movie():
     # render_template('~.html', movie_info=movie_info)
 
 
-@api.route('movies/<int:movie_id>/like', methods=['POST'])
+@api.route('movies/<int:movie_id>/like', methods=['GET', 'POST'])
 def likeMovies():
     '''
     parameter : movie_id
