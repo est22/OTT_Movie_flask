@@ -1,6 +1,6 @@
 {% extends "_base.html" %}
 
-{% block title %}영화 소개 페이지{% endblock %}
+{% block title %}Movie Details{% endblock %}
 
 {% block css %}
 <link rel=" shortcut icon" href="../static/favicon-library.ico">
@@ -8,69 +8,78 @@
 {% endblock %}
 
 {% block content %}
-<section class="container px-4 px-lg-5 my-5" style="width:1024px; margin: 0 auto;">
+<div class="container px-4 px-lg-5 my-5" style="width:1024px; margin: 0 auto;">
 <div class="row gx-4 gx-lg-5 align-items-center" style="padding-top:30px;">
-    <div style="flex: 0 0 auto; width:40%;">
-        <img class="card-img-top mb-5 mb-md-0" src="{{ movie_detail.img_link }}" alt="{{ movie_detail.movie_name }}" />
-    </div>
+
+    <img class="card-img-top mb-5 mb-md-0" style="display: block; margin: 0 auto; "src="{{ movie_detail.img_url }}" alt="{{ movie_detail.movie_name }}" />
+
     <div class="col-md-6">
         <!-- 제목 (개봉연도) -->
         <h1 class="display-5 fw-bolder" style="font-size:32px;">{{ movie_detail.movie_name }} ({{ movie_detail.release_year }})</h1>
+        
         <div>
-            <!-- 좋아요 하트표시 -->
-
-            <!-- 상이름 (수상연도)-->
-            <p>{{ movie_detail.award_year }}, {{ movie_detail.award_name1 }} {{ movie_detail.award_name2 }} {{ movie_detail.award_name3 }}</p>
-            <!-- 러닝타임 -->
-            <p>{{ movie_detail.running_time }}</p>
-            <!-- 줄거리 -->
-            <p>Storyline</p>
-            <p>{{ movie_detail.storyline }}</p>
-            <!-- 장르 -->
-            <p>#{{ movie_detail.genre1 }} #{{ movie_detail.genre2 }} #{{ movie_detail.genre3 }} #{{ movie_detail.genre4 }}</p>
+            <tr>
+                <th>Awarded Year</th>
+                <td>{{ movie_detail.award_year }}</td>
+            </tr>
+            <tr>
+                <th>Award Categories</th>
+                <td>{{ movie_detail.award_name1 }}  {{ movie_detail.award_name2 }}  {{ movie_detail.award_name3 }}</td>
+            </tr>
+            <tr>
+                <th>Running Time</th>
+                <td>{{ movie_detail.running_time }}</td>
+            </tr>
+            <tr>
+                <th>Storyline</th>
+                <td>{{ movie_detail.storyline }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ movie_detail.genre1 }}  {{ movie_detail.genre2 }}  {{ movie_detail.genre3 }}  {{ movie_detail.genre4 }}</td>
+            </tr>
+            <tr>
+                <th>User Rating</th>
+                <td style="margin-top:15px;">
+                    {{ movie_detail.user_rating }}
+                </td>
+            </tr>
+            <tr>
+                <th>Critic Rating</th>
+                <td style="margin-top:15px;">
+                    {{ movie_detail.critic_rating }}
+                </td>
+            </tr>
         </div>
-        <div>
-            <p>User Rating</p>
-            <p style="margin-top:15px;">
-                {{ movie_detail.user_rating }}
-            </p>
-        </div>
-        <div>
-            <p>Critic Rating</p>
-            <p style="margin-top:15px;">
-                {{ movie_detail.critic_rating }}
-            </p>
-        </div>
-    </table>
     </div>
 </div>
 
 <hr>
 <!-- 댓글 작성하기 : 로그인된 유저만 -->
-<!-- {% if session['user_email'] %}
+{% if session['user_email'] %}
 <div class="row" style="margin:0 auto; padding-top:20px">
-    <h2 style="font-size: 30px;">댓글</h2>
+    <h2 style="font-size: 30px;">Comments</h2>
     <form method="post" class="" style="display:flex; margin-top:10px;">
         <div style="display:flex;">
-            <textarea name="review" placeholder="댓글을 작성하세요" rows="2" cols="95%"></textarea>
+            <textarea name="review" placeholder="Please leave your comment here" rows="2" cols="95%"></textarea>
         </div>
         <div style="display:flex; margin-left:10px;">
             <select name="rating">
-                <option value="1">1점</option>
-                <option value="2">2점</option>
-                <option value="3">3점</option>
-                <option value="4">4점</option>
-                <option value="5">5점</option>
+                <option value="1">1pt</option>
+                <option value="2">2pt</option>
+                <option value="3">3pt</option>
+                <option value="4">4pt</option>
+                <option value="5">5pt</option>
             </select>
-            <input type="submit" value="확인" style="margin-left:5px;">
+            <input type="submit" value="Comment" style="margin-left:5px;">
         </div>
     </form>
 </div>
 
-{% endif %} -->
+{% endif %}
 
 <!-- 지금까지 작성된 댓글 보여주기 -->
-<!-- <div class="row" style="margin:0 auto; padding-top:20px">
+<div class="row" style="margin:0 auto; padding-top:20px">
     {% for review in review_list %}
     <div class="all_review">
         <div>
@@ -93,10 +102,10 @@
         <hr>
     </div>
     {% endfor %}
-</div> -->
+</div>
 
 
 
-</section>
+</div>
 
 {% endblock %}

@@ -29,37 +29,33 @@ def main():
 def movies(year_id):
     '''
     GET : 해당 year_id에 맞는 movies.html 보여주기
-    POST : movie_id 넘겨주기
+    POST : 없음
     '''
-    year_movie_list = Movie.query.filter(Movie.award_year == year_id).all()
+    # 해당 연도 영화 데이터를 불러옴
+    year_movie_list = Movie.query.filter(
+        Movie.award_year == year_id).all()
+    # 맞는 데이터가 없는 경우
+    if year_movie_list is None:
+        flash(f'{year_id}연도의 영화를 찾을 수 없습니다.')
+        return redirect('/')
 
-    if request.method == 'POST':
-        movie_id = request.form['movie_id']
+    # if request.method == 'POST':
+    #     movie_id = request.form['movie_id']
 
-        # 영화 정보
-        movie_info = Movie.query.filter(Movie.id == movie_id).first()
+    #     # 영화 정보
+    #     movie_info = Movie.query.filter(Movie.id == movie_id).first()
 
-        if movie_info is None:
-            flash('해당 영화를 찾을 수 없습니다.')
-            return render_template("movies.html", year_movie_list=year_movie_list)
+    #     if movie_info is None:
+    #         flash('해당 영화를 찾을 수 없습니다.')
+    #         return render_template("movies.html", year_movie_list=year_movie_list)
 
-        return render_template("movie_detail.html", movie_detail=movie_detail, review_list=review_list)
+    #     return render_template("movie_detail.html", movie_detail=movie_detail, review_list=review_list)
 
     # GET방식인 경우
     return render_template("movies.html", year_movie_list=year_movie_list)
 
 
-# # 해당 연도 영화 데이터를 가져온다
-#     movie_data = Movie.query.filter(Movie.award_year == year_id).all()
-
-#     # 맞는 데이터가 없는 경우
-#     if movie_data is None:
-#         flash(f'{year_id}연도의 영화를 찾을 수 없습니다.')
-#         return redirect('/')
-
-#     # 해당 연도의 영화들을 랭킹순으로 불러옴
-#     movie_info = Movie.query.filter(
-#         Movie.award_year == year_id).order_by(Movie.ranking.desc()).all()
+#
 
 #     review_list = Review.query.filter(
 #         Review.movie_id == movie_id).order_by(Review.write_time.desc()).all()
