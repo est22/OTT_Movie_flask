@@ -1,28 +1,57 @@
+{% with messages = get_flashed_messages() %}
+{% if messages %} 
+<script> 
+    alert("{{messages[0]}}") 
+</script> 
+{% endif %} 
+{% endwith %}
+
+{% extends "_base.html" %}
+
+{% block title %}movies{% endblock %}
+
+{% include "_header.html" %}
+
+{% block css %}
+<link rel=" shortcut icon" href="../static/favicon-library.ico">
+<link rel="icon" href="../static/favicon-library.ico">
+{% endblock %}
+
 
 {% block content %}
 
-{% if book_list %}
+{% if year_movie_list %}
 <div method="post" class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 row-cols-xl-4 justify-content-center">
-        {% for 영화 in 영화포스터리스트 %}
+        {% for movie in year_movie_list %}
         <form method="post" class="col mb-5">
             <div class="card h-100">
                 <div style="width:262px; height:262px; ">
-                    <img class="poster-img-top" src="../{{ 영화포스터 디비 }}" alt="{{ 영화.영화제목 }}" style="display: block; width:70%; border-bottom: 0; margin: 0 auto; "/>
+                    <img class="poster-img-top" src="{{ movie.img_url }}" alt="{{ movie.movie_name }}" style="display: block; width:70%; border-bottom: 0; margin: 0 auto; "/>
                 </div>
                 <div class="card-body p-4">
                     <div class="text-center">
                         <h5 id="book_name" class="fw-bolder" style="font-size: 18px;">
-                            {{ 영화.영화제목 }}
+                            {{ movie.movie_name }}
                         </h5>
                     </div>
                 </div>
-                
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="margin:0 auto;">
+
+                    <input type="hidden" name="movie_id" value="{{ movie.id }}">
+                    <span class="text-center"><a class="btn btn-outline-dark mt-auto" href="/movieDetail/{{ movie.id }}">자세히보기</a></span>
+                </div>
             </div>
         </form>
         {% endfor %}
     </div>
 </div>
 
+{% else %}
+<div>movie_list가 없습니다</div>
+{% endif %}
+
+
 
 {% endblock %}
+

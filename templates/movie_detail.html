@@ -1,48 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영화 소개 페이지</title>
-</head>
-<body>
-    <h1>Detail page</h1>
-    <h2>Genre : {}</h2>
-    
-<!-- 영화 소개 -->
-    <container>
-        <button>❤️</button>
-        <p>나머지는 데이터베이스에 데이터 넣고 보여주기만 하는거니까 나중에 구현</p>
-    </container>
+{% extends "_base.html" %}
 
-<!-- 유저 리뷰 키워드 태그 -->
-    <container>
-        <h3>User Review Keyword</h3>
-        <p>#tag</p>
-        <p>#감동</p>
-    </container>
+{% block title %}영화 소개 페이지{% endblock %}
 
-<!-- review -->
-    <container>
-        <div class="row" style="margin:0 auto; padding-top:20px">
-            <h4>당신의 리뷰를 작성해주세요</h4>
-            <form method="post" class="" style="display:flex; margin-top:10px;">
-                <div style="display:flex;">
-                    <textarea name="review" placeholder="댓글을 작성하세요" rows="2" cols="95%"></textarea>
-                </div>
-                <div style="display:flex; margin-left:10px;">
-                    <select name="rating">
-                        <option value="1">1점</option>
-                        <option value="2">2점</option>
-                        <option value="3">3점</option>
-                        <option value="4">4점</option>
-                        <option value="5">5점</option>
-                    </select>
-                    <input type="submit" value="확인" style="margin-left:5px;">
-                </div>
-            </form>
+{% block css %}
+<link rel=" shortcut icon" href="../static/favicon-library.ico">
+<link rel="icon" href="/static/favicon-library.ico">
+{% endblock %}
+
+{% block content %}
+<section class="container px-4 px-lg-5 my-5" style="width:1024px; margin: 0 auto;">
+<div class="row gx-4 gx-lg-5 align-items-center" style="padding-top:30px;">
+    <div style="flex: 0 0 auto; width:40%;">
+        <img class="card-img-top mb-5 mb-md-0" src="{{ movie_detail.img_link }}" alt="{{ movie_detail.movie_name }}" />
+    </div>
+    <div class="col-md-6">
+        <!-- 제목 (개봉연도) -->
+        <h1 class="display-5 fw-bolder" style="font-size:32px;">{{ movie_detail.movie_name }} ({{ movie_detail.release_year }})</h1>
+        <div>
+            <!-- 좋아요 하트표시 -->
+
+            <!-- 상이름 (수상연도)-->
+            <p>{{ movie_detail.award_year }}, {{ movie_detail.award_name1 }} {{ movie_detail.award_name2 }} {{ movie_detail.award_name3 }}</p>
+            <!-- 러닝타임 -->
+            <p>{{ movie_detail.running_time }}</p>
+            <!-- 줄거리 -->
+            <p>Storyline</p>
+            <p>{{ movie_detail.storyline }}</p>
+            <!-- 장르 -->
+            <p>#{{ movie_detail.genre1 }} #{{ movie_detail.genre2 }} #{{ movie_detail.genre3 }} #{{ movie_detail.genre4 }}</p>
         </div>
-        <!-- 작성된 댓글 보여주기 -> 진자로? -->
-    </container>
-</body>
-</html>
+        <div>
+            <p>User Rating</p>
+            <p style="margin-top:15px;">
+                {{ movie_detail.user_rating }}
+            </p>
+        </div>
+        <div>
+            <p>Critic Rating</p>
+            <p style="margin-top:15px;">
+                {{ movie_detail.critic_rating }}
+            </p>
+        </div>
+    </table>
+    </div>
+</div>
+
+<hr>
+<!-- 댓글 작성하기 : 로그인된 유저만 -->
+<!-- {% if session['user_email'] %}
+<div class="row" style="margin:0 auto; padding-top:20px">
+    <h2 style="font-size: 30px;">댓글</h2>
+    <form method="post" class="" style="display:flex; margin-top:10px;">
+        <div style="display:flex;">
+            <textarea name="review" placeholder="댓글을 작성하세요" rows="2" cols="95%"></textarea>
+        </div>
+        <div style="display:flex; margin-left:10px;">
+            <select name="rating">
+                <option value="1">1점</option>
+                <option value="2">2점</option>
+                <option value="3">3점</option>
+                <option value="4">4점</option>
+                <option value="5">5점</option>
+            </select>
+            <input type="submit" value="확인" style="margin-left:5px;">
+        </div>
+    </form>
+</div>
+
+{% endif %} -->
+
+<!-- 지금까지 작성된 댓글 보여주기 -->
+<!-- <div class="row" style="margin:0 auto; padding-top:20px">
+    {% for review in review_list %}
+    <div class="all_review">
+        <div>
+            <span>{{ review.user_name }}</span>
+            <span class="bar">|</span>
+            <span>{{ review.write_time }}</span>
+            <span class="bar">|</span>
+            <span>
+            {% for _ in range(review.rating) %}
+                <img width="16" src="../static/img/star_fill.png">
+            {% endfor %}
+            {% for _ in range(5 - (review.rating)) %}
+                <img width="16" src="../static/img/star_empty.png">
+            {% endfor %}
+            </span>
+        </div>
+        <div class="review_content" style="font-size:16px; margin-top:5px;">
+            {{ review.content }}
+        </div>
+        <hr>
+    </div>
+    {% endfor %}
+</div> -->
+
+
+
+</section>
+
+{% endblock %}
