@@ -10,11 +10,42 @@ def movie_detail(movie_id):
     '''
     parameter : year_id, movie_id
     GET : 해당 movie_id의 데이터 보여주기
-    POST : 없음
+    POST : 댓글
     '''
 
-    # 해당 연도의 영화들을 랭킹순으로 불러옴
+    # 해당 연도의 영화들을 불러옴
     movie_info = Movie.query.filter(Movie.id == movie_id).first()
+
+    # 맞는 데이터가 없는 경우
+    if movie_info is None:
+        flash('영화를 찾을 수 없습니다.')
+        return redirect('/')
+
+    # 댓글 작성시 form post로 받음
+    if request.method == 'POST':
+        content = request.form['review']
+        review_rating = int(request.form['rating'])
+        now = datetime.now()
+        write_time = now.strftime('%Y-%m-%d %H:%M:%S')
+
+        # 댓글 내용과 별점이 없는 경우
+        if not content:
+            flash('댓글 내용을 작성해주세요.')
+            return redirect(f'movieDetail/{movie_id}')
+        if not rating:
+            flash('별점을 선택해주세요.')
+            return redirect(f'movieDetail/{movie_id}')
+
+        # 댓글 작성이 올바르게 된 경우 : review table에 추가
+        review_data = Review(
+            user_name=session['user_name'], write_time=write_time, content=content, rating=review_rating, movie_id=movie_id)
+
+        db.session.add(review_data)
+        db.session.commit()
+
+    # 지금까지 작성된 댓글을 최신순(desc)으로 가져온다 (if_post문에 포함되지 않음)
+    # review_list = Review.query.filter(
+        # Review.movie_id == movie_id).order_by(Review.write_time.desc()).all()
 
     review_list = Review.query.filter(
         Review.id == movie_id).order_by(Review.write_time.desc()).all()
@@ -93,11 +124,11 @@ def movie_detail(movie_id):
 #     # render_template('~.html', review_list=review_list)
 
 
-# @api.route('movies/<int:movie_id>/review/<int:review_id>', methods=['GET', 'POST'])
-# def delete_movieReview():
-#     '''
-#     parameter : movie_id, review_id
-#     GET :
-#     POST :
-#     '''
-#     return
+# # @api.route('movies/<int:movie_id>/review/<int:review_id>', methods=['GET', 'POST'])
+# # def delete_movieReview():
+# #     '''
+# #     parameter : movie_id, review_id
+# #     GET :
+# #     POST :
+# #     '''
+# #     return
