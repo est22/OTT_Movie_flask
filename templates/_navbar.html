@@ -1,22 +1,22 @@
-<nav class="fixed-top" style="background: #5434af; height: 80px; width: 100%;">
-    <label><a style="text-decoration:none; color: white; font-size: 35px; line-height: 80px; padding: 0 100px; font-weight: bold;" href="{{ url_for('main.main') }}">최신 해외 수상작 추천 서비스</label></a>
+<nav class="fixed-top" style="background: #89c0df; height: 80px; width: 100%;">
+    <label><a style="text-decoration:none; color: black; font-size: 35px; line-height: 80px; padding: 0 100px; font-weight: bold;" href="{{ url_for('main.main') }}">Latest Award-winning Films Recommendation Service</label></a>
     <ul style="float: right; margin-right: 20px;">
     {% if session['user_name'] %}
         <li style="display: inline-block; line-height: 80px; margin: 0 30px;">
-            <span class="" style="color: white; font-size: 20px;">안녕하세요! {{ session['user_name'] }} 님!</span>
+            <span class="" style="color: black; font-size: 20px;">Welcome, {{ session['user_name'] }}!</span>
         </li>
         <li style="display: inline-block; line-height: 80px; margin: 0 5px;">
-            <a style="text-decoration:none; color: white; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1d075f; transition: 0.5s;" href="{{ url_for('user.favorites') }}">마이페이지</a>               
+            <a style="text-decoration:none; color: black; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1a6f94; transition: 0.5s;" href="{{ url_for('user.favorites') }}">My Page</a>               
         </li>
         <li style="display: inline-block; line-height: 80px; margin: 0 5px;">
-            <a style="text-decoration:none; color: white; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1d075f; transition: 0.5s;" href="{{ url_for('auth.logout') }}">로그아웃</a>               
+            <a style="text-decoration:none; color: black; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1a6f94; transition: 0.5s;" href="{{ url_for('auth.logout') }}">Logout</a>               
         </li>
     {% else %}
         <li style="display: inline-block; line-height: 80px; margin: 0 5px;">
-            <a style="text-decoration:none; color: white; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1d075f; transition: 0.5s;" href="{{ url_for('auth.register') }}">회원가입</a>               
+            <a style="text-decoration:none; color: black; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1a6f94; transition: 0.5s;" href="{{ url_for('auth.register') }}">Sign up</a>               
         </li>
         <li style="display: inline-block; line-height: 80px; margin: 0 5px;">
-            <a style="text-decoration:none; color: white; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1d075f; transition: 0.5s;" href="{{ url_for('auth.login') }}">로그인</a>
+            <a style="text-decoration:none; color: black; font-size: 17px; padding: 7px 13px; border-radius: 3px; text-transform: uppercase; background: #1a6f94; transition: 0.5s;" href="{{ url_for('auth.login') }}">Sign in</a>
         </li>
     {% endif %}
     </ul>
