@@ -13,9 +13,6 @@
 
 
 {% block css %}
-<!DOCTYPE html>
-<html>
-<head>
 <style>
 .button {
     display: inline-block;
@@ -57,29 +54,16 @@
     right: 0;
 }
 </style>
-</head>
-<body>
-
-
-<button class="button" style="vertical-align:middle"><span>Hover </span></button>
-
-</body>
-</html>
-
-
-
 {% endblock %}
 
 
 {% block content %}
 <br>
-<img src="https://c.tenor.com/s-TpetY57k0AAAAC/oscar-oscars.gif" style="margin-left: auto; margin-right: auto; margin-top: 200px; display: block;">
+<img src="https://c.tenor.com/s-TpetY57k0AAAAC/oscar-oscars.gif" style="margin: 0 auto; padding-top:50px; padding-bottom: 30px; display: block;">
 <br>
-<h4 style="margin-left: 40px; margin-right: 40px; display: block;">The Academy Awards, popularly known as the Oscars, are awards for artistic and technical merit in the film industry. They are regarded as the most prestigious and significant awards in the entertainment industry worldwide. Given annually by the Academy of Motion Picture Arts and Sciences (AMPAS), the awards are an international recognition of excellence in cinematic achievements, as assessed by the Academy's voting membership. The various category winners are awarded a copy of a golden statuette as a trophy, officially called the "Academy Award of Merit", although more commonly referred to by its nickname, the "Oscar". The statuette depicts a knight rendered in the Art Deco style.</h4>
-<img src="../static/img/most_pop_genre.png" alt="most popular genre doughnut chart" style="margin-left: auto; margin-right: auto; margin-top: 100px; display: block;">
+<h4 style="width:80%; margin: 0 auto; padding-bottom:50px;">The Academy Awards, popularly known as the Oscars, are awards for artistic and technical merit in the film industry. They are regarded as the most prestigious and significant awards in the entertainment industry worldwide. Given annually by the Academy of Motion Picture Arts and Sciences (AMPAS), the awards are an international recognition of excellence in cinematic achievements, as assessed by the Academy's voting membership. The various category winners are awarded a copy of a golden statuette as a trophy, officially called the "Academy Award of Merit", although more commonly referred to by its nickname, the "Oscar". The statuette depicts a knight rendered in the Art Deco style.</h4>
 <br>
 <div class = "ui-grid-b ui-responsive">
-
     <form method="post">
         <button class="button"><a href="/years/{{ 2010 }}">2010</a></button>
         <button class="button"><a href="/years/{{ 2011 }}">2011</a></button>
@@ -95,5 +79,9 @@
         <button class="button"><a href="/years/{{ 2021 }}">2021</a></button>
     </form>
 </div>
+<br>
+<img src="../static/img/img_data/2.png" alt="most popular genre doughnut chart" style="width:50%; margin-top:30px;">
+<img src="../static/img/img_data/1.png" alt="most popular genre doughnut chart" style="width:40%; margin-top:10px;">
+<br>
 {% endblock %}
 
