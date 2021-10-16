@@ -11,13 +11,13 @@
 <div class="container px-4 px-lg-5 my-5" style="width:1024px; margin: 0 auto;">
 <div class="row gx-4 gx-lg-5 align-items-center" style="padding-top:30px;">
 
-    <img class="card-img-top mb-5 mb-md-0" style="display: block; margin: 0 auto; "src="{{ movie_detail.img_url }}" alt="{{ movie_detail.movie_name }}" />
+    <img class="card-img-top mb-5 mb-md-0" style="display: block; margin: 0 auto; width:50%;"src="{{ movie_detail.img_url }}" alt="{{ movie_detail.movie_name }}" />
 
     <div class="col-md-6">
         <!-- 제목 (개봉연도) -->
         <h1 class="display-5 fw-bolder" style="font-size:32px;">{{ movie_detail.movie_name }} ({{ movie_detail.release_year }})</h1>
         
-        <div>
+        <table>
             <tr>
                 <th>Awarded Year</th>
                 <td>{{ movie_detail.award_year }}</td>
@@ -50,13 +50,13 @@
                     {{ movie_detail.critic_rating }}
                 </td>
             </tr>
-        </div>
+        </table>
     </div>
 </div>
 
 <hr>
 <!-- 댓글 작성하기 : 로그인된 유저만 -->
-{% if session['user_email'] %}
+<!-- {% if session['user_email'] %} -->
 <div class="row" style="margin:0 auto; padding-top:20px">
     <h2 style="font-size: 30px;">Comments</h2>
     <form method="post" class="" style="display:flex; margin-top:10px;">
@@ -76,7 +76,7 @@
     </form>
 </div>
 
-{% endif %}
+<!-- {% endif %} -->
 
 <!-- 지금까지 작성된 댓글 보여주기 -->
 <div class="row" style="margin:0 auto; padding-top:20px">
