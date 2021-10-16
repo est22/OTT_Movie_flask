@@ -47,3 +47,21 @@ def movies(year_id):
 
     # GET방식인 경우
     return render_template("movies.html", year_movie_list=year_movie_list)
+
+
+# # 해당 연도 영화 데이터를 가져온다
+#     movie_data = Movie.query.filter(Movie.award_year == year_id).all()
+
+#     # 맞는 데이터가 없는 경우
+#     if movie_data is None:
+#         flash(f'{year_id}연도의 영화를 찾을 수 없습니다.')
+#         return redirect('/')
+
+#     # 해당 연도의 영화들을 랭킹순으로 불러옴
+#     movie_info = Movie.query.filter(
+#         Movie.award_year == year_id).order_by(Movie.ranking.desc()).all()
+
+#     review_list = Review.query.filter(
+#         Review.movie_id == movie_id).order_by(Review.write_time.desc()).all()
+
+#     return render_template('movie_detail.html', movie_detail=movie_info, review_list=review_list)

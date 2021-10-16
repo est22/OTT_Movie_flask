@@ -14,7 +14,7 @@ with open('oscar_award_data.csv', 'r') as f:
         movie = Movie(
             # id=int(row['id']),
             movie_name=row['movie_name'],
-            ranking=row['ranking'],
+            # ranking=row['ranking'],
             award_year=int(row['award_year']),
             award_name1=row['award_name1'],
             award_name2=row['award_name2'],
@@ -26,8 +26,8 @@ with open('oscar_award_data.csv', 'r') as f:
             release_year=int(row['release_year']),
             running_time=row['running_time'],
             storyline=row['storyline'],
-            user_rating=float(row['user_rating']),
-            critic_rating=float(row['critic_rating']),
+            user_rating=row['user_rating'],
+            critic_rating=row['critic_rating'],
             genre1=row['genre1'],
             genre2=row['genre2'],
             genre3=row['genre3'],
@@ -38,4 +38,5 @@ with open('oscar_award_data.csv', 'r') as f:
             img_url=row['imgurl'],
         )
         db.session.add(movie)
+
     db.session.commit()
