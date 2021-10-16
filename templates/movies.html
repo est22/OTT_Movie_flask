@@ -1,6 +1,45 @@
 
 {% block content %}
 
+                    </div>
+                </div>
+                
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+{% with messages = get_flashed_messages() %}
+{% if messages %} 
+<script> 
+    alert("{{messages[0]}}") 
+</script> 
+{% endif %} 
+{% endwith %}
+
+{% extends "_base.html" %}
+
+{% block title %}movies{% endblock %}
+
+{% include "_header.html" %}
+
+{% block css %}
+<link rel=" shortcut icon" href="../static/favicon-library.ico">
+<link rel="icon" href="../static/favicon-library.ico">
+{% endblock %}
+
+{% block content %}
+
 {% if year_movie_list %}
 <div method="post" class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-4 row-cols-xl-4 justify-content-center">
@@ -15,14 +54,32 @@
                         <h5 id="book_name" class="fw-bolder" style="font-size: 18px;">
                             {{ movie.movie_name }}
                         </h5>
+                        <div style="margin-top:15px;">
+                            {% for _ in range(movie.user_rating) %}
+                                <img width="28" src="../static/img/star_fill.png">
+                            {% endfor %}
+                            {% for _ in range(5 - movie.user_rating) %}
+                                <img width="28" src="../static/img/star_empty.png">
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-                
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent" style="margin:0 auto;">
+                    
+                    <input type="hidden" name="movie_id" value="{{ movie.id }}">
+                    <span class="text-center"><a class="btn btn-outline-dark mt-auto" href="/movieDetail/{{ movie.id }}">자세히보기</a></span>
+                </div>
             </div>
         </form>
         {% endfor %}
     </div>
 </div>
 
+{% else %}
+<div>movie_list가 없습니다</div>
+{% endif %}
+
+
 
 {% endblock %}
+

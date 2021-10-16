@@ -5,7 +5,7 @@ from datetime import datetime
 api = Blueprint('movie', __name__, url_prefix='/')
 
 
-@api.route('movies/<int:movie_id>', methods=['GET',  'POST'])
+@api.route('years/<int:year_id>/movieDetail/<int:movie_id>', methods=['GET',  'POST'])
 def movie_detail():
     '''
     parameter : year_id, movie_id
@@ -22,12 +22,14 @@ def movie_detail():
         flash(f'{year_id}연도의 영화를 찾을 수 없습니다.')
         return redirect('/')
 
+    # 해당 연도의 영화들을 랭킹순으로 불러옴
     movie_info = Movie.query.filter(
         Movie.award_year == year_id).order_by(Movie.ranking.desc()).all()
 
-    # movie_info 보내주기
-    return movie_info
-    # render_template('~.html', movie_info=movie_info)
+    review_list = Review.query.filter(
+        Review.movie_id == movie_id).order_by(Review.write_time.desc()).all()
+
+    return render_template('movie_detail.html', movie_detail=movie_info, review_list=review_list)
 
 
 @api.route('movies/<int:movie_id>/like', methods=['GET', 'POST'])
